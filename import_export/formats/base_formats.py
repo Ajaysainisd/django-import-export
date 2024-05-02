@@ -202,7 +202,8 @@ class XLSX(TablibFormat):
 
         for row in rows:
             row_values = [cell.value for cell in row]
-            dataset.append(row_values)
+            if not all(v is None for v in row_values) and row_values:
+                dataset.append(row_values)
         return dataset
 
     def export_data(self, dataset, **kwargs):
